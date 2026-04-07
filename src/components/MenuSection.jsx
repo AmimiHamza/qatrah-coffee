@@ -2,11 +2,10 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ShoppingBag, Star, Info } from 'lucide-react'
+import { ShoppingBag, Star } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const categories = ['الكل', 'Pour Over', 'لاتيه مميز', 'موسمي', 'بارد']
 
 const menuItems = [
   {
@@ -211,35 +210,30 @@ function MenuCard({ item, index, onOrder }) {
 }
 
 export default function MenuSection({ onOrderOpen }) {
-  const [activeCategory, setActiveCategory] = useState('الكل')
+  const { t } = useLanguage()
+  const m = t.menu
+  const [activeCategory, setActiveCategory] = useState(m.all)
   const sectionRef = useRef()
   const titleRef = useRef()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1, y: 0, duration: 1,
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      )
+      gsap.fromTo(titleRef.current, { opacity: 0, y: 50 }, {
+        opacity: 1, y: 0, duration: 1,
+        scrollTrigger: { trigger: titleRef.current, start: 'top 85%', toggleActions: 'play none none reverse' },
+      })
     }, sectionRef)
     return () => ctx.revert()
   }, [])
 
-  const filtered = activeCategory === 'الكل'
+  const filtered = activeCategory === m.all
     ? menuItems
-    : menuItems.filter((m) => m.category === activeCategory)
+    : menuItems.filter((item) => m.categories.includes(activeCategory)
+        ? item.category === activeCategory
+        : item.category === activeCategory)
 
   return (
     <section id="menu" ref={sectionRef} className="relative py-24 bg-espresso-800 overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent" />
         <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent" />
@@ -247,23 +241,19 @@ export default function MenuSection({ onOrderOpen }) {
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
         <div ref={titleRef} className="text-start mb-12">
           <span className="inline-block font-tajawal text-gold-400 text-sm tracking-[0.2em] uppercase mb-4">
-            ◆ قائمة اليوم
+            ◆ {m.tag}
           </span>
           <h2 className="font-cairo font-black text-cream-200 text-3xl sm:text-4xl lg:text-5xl mb-4">
-            كل كوب يحكي
-            <span className="text-gradient-gold"> قصة</span>
+            {m.title}
+            <span className="text-gradient-gold"> {m.titleHighlight}</span>
           </h2>
-          <p className="font-tajawal text-cream-200/50 text-base max-w-xl">
-            بن مختار بعناية من أفضل مزارع العالم ومزارع جازان المحلية — يُحمّص أسبوعياً في مشرطنا
-          </p>
+          <p className="font-tajawal text-cream-200/50 text-base max-w-xl">{m.sub}</p>
         </div>
 
-        {/* Category Filter */}
         <div className="flex flex-wrap gap-2 mb-10">
-          {categories.map((cat) => (
+          {['الكل', 'Pour Over', 'لاتيه مميز', 'موسمي', 'بارد'].map((cat, i) => (
             <motion.button
               key={cat}
               onClick={() => setActiveCategory(cat)}
@@ -306,18 +296,15 @@ export default function MenuSection({ onOrderOpen }) {
           className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-14 pt-10 border-t border-white/8"
         >
           <div>
-            <p className="font-cairo font-bold text-cream-200 text-lg">تفضّل بزيارتنا</p>
-            <p className="font-tajawal text-cream-200/45 text-sm mt-0.5">
-              حي النرجس، الرياض • يومياً ٧ص – ١٢م
-            </p>
+            <p className="font-cairo font-bold text-cream-200 text-lg">{m.visitUs}</p>
+            <p className="font-tajawal text-cream-200/45 text-sm mt-0.5">{m.visitSub}</p>
           </div>
           <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+            whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
             onClick={() => onOrderOpen()}
             className="btn-gold bg-transparent border border-gold-400/40 text-gold-400 px-8 py-3 rounded-full font-cairo font-bold text-sm hover:bg-gold-400/10 transition-colors duration-300"
           >
-            عرض القائمة الكاملة
+            {m.fullMenu}
           </motion.button>
         </motion.div>
       </div>

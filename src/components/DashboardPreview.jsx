@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { TrendingUp, Package, Users, Clock, BarChart2, Zap, ShieldCheck, Smartphone } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -87,6 +88,8 @@ function MiniChart() {
 }
 
 export default function DashboardPreview() {
+  const { t } = useLanguage()
+  const d = t.dashboard
   const sectionRef = useRef()
 
   useEffect(() => {
@@ -129,16 +132,13 @@ export default function DashboardPreview() {
         >
           <span className="inline-flex items-center gap-2 bg-gold-400/10 border border-gold-400/25 rounded-full px-4 py-1.5 mb-4">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="font-tajawal text-gold-400 text-xs tracking-wider">للمالك · نظام إدارة ذكي</span>
+            <span className="font-tajawal text-gold-400 text-xs tracking-wider">{d.tag}</span>
           </span>
           <h2 className="font-cairo font-black text-cream-200 text-3xl sm:text-4xl lg:text-5xl mb-4">
-            أدِر مقهاك بذكاء
-            <span className="text-gradient-gold"> من كل مكان</span>
+            {d.title}
+            <span className="text-gradient-gold"> {d.titleHighlight}</span>
           </h2>
-          <p className="font-tajawal text-cream-200/50 text-base max-w-xl leading-relaxed">
-            منصة إدارة متكاملة مصممة خصيصاً لمقاهي الموجة الثالثة في السوق السعودي.
-            حوّل بياناتك إلى قرارات تزيد أرباحك.
-          </p>
+          <p className="font-tajawal text-cream-200/50 text-base max-w-xl leading-relaxed">{d.sub}</p>
         </motion.div>
 
         {/* Main dashboard mockup */}
@@ -317,10 +317,10 @@ export default function DashboardPreview() {
           className="text-center bg-gradient-to-b from-gold-400/8 to-transparent border border-gold-400/15 rounded-3xl p-10"
         >
           <h3 className="font-cairo font-black text-cream-200 text-2xl lg:text-3xl mb-3">
-            مهتم بنظام إدارة قَطرَة؟
+            {d.interested}
           </h3>
           <p className="font-tajawal text-cream-200/50 text-base mb-6 max-w-lg mx-auto">
-            احصل على عرض توضيحي مجاني لمدة ٣٠ دقيقة مع أحد خبرائنا — بدون التزام
+            {d.interestedSub}
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <motion.a

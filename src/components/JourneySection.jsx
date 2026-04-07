@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLanguage } from '../context/LanguageContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -178,6 +179,8 @@ function JourneyCard({ step, index }) {
 }
 
 export default function JourneySection() {
+  const { t } = useLanguage()
+  const j = t.journey
   const sectionRef = useRef()
   const headerRef = useRef()
   const lineRef = useRef()
@@ -233,26 +236,24 @@ export default function JourneySection() {
         {/* Header */}
         <div ref={headerRef} className="text-start mb-16">
           <span className="header-el inline-block font-tajawal text-gold-400 text-sm tracking-[0.2em] uppercase mb-4">
-            ◆ رحلة البن
+            ◆ {j.tag}
           </span>
           <h2 className="header-el font-cairo font-black text-cream-200 text-3xl sm:text-4xl lg:text-5xl mb-4">
-            من جبال جازان
-            <span className="text-gradient-gold"> إلى فنجانك</span>
+            {j.title}
+            <span className="text-gradient-gold"> {j.titleHighlight}</span>
           </h2>
           <p className="header-el font-tajawal text-cream-200/50 text-base max-w-xl leading-relaxed">
-            نؤمن بالشفافية الكاملة — كل حبة قهوة تحكي قصتها من اليوم الأول حتى آخر رشفة.
-            هذا هو وعدنا لك.
+            {j.sub}
           </p>
 
-          {/* Vision 2030 badge */}
           <motion.div
             className="header-el inline-flex items-center gap-3 bg-gradient-to-l from-green-900/30 to-espresso-700/50 border border-green-700/25 rounded-2xl px-5 py-3 mt-6"
             whileHover={{ scale: 1.02 }}
           >
             <span className="text-2xl">🇸🇦</span>
             <div>
-              <p className="font-cairo font-bold text-cream-200 text-sm">فخورون بهويتنا السعودية</p>
-              <p className="font-tajawal text-cream-200/40 text-xs mt-0.5">جزء من رؤية المملكة ٢٠٣٠ لتعزيز الهوية الوطنية</p>
+              <p className="font-cairo font-bold text-cream-200 text-sm">{j.visionBadge}</p>
+              <p className="font-tajawal text-cream-200/40 text-xs mt-0.5">{j.visionSub}</p>
             </div>
           </motion.div>
         </div>
@@ -282,9 +283,9 @@ export default function JourneySection() {
           </div>
           <span className="font-cairo text-gold-400/30 text-8xl leading-none block">"</span>
           <p className="font-cairo font-black text-cream-200 text-2xl lg:text-3xl -mt-8 relative">
-            القهوة ليست مشروباً — إنها لحظة تأمل في عالم لا يتوقف
+            {j.quote}
           </p>
-          <p className="font-tajawal text-cream-200/35 text-sm mt-4">— فريق قَطرَة</p>
+          <p className="font-tajawal text-cream-200/35 text-sm mt-4">{j.quoteBy}</p>
         </motion.blockquote>
       </div>
     </section>

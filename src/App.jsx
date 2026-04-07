@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import Navigation from './components/Navigation'
 import HeroSection from './components/HeroSection'
 import MenuSection from './components/MenuSection'
@@ -7,13 +8,15 @@ import OrderDrawer from './components/OrderDrawer'
 import ReservationSection from './components/ReservationSection'
 import JourneySection from './components/JourneySection'
 import DashboardPreview from './components/DashboardPreview'
+import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 
 /* ── Loader ── */
 function Loader({ onDone }) {
+  const { t } = useLanguage()
   useEffect(() => {
-    const t = setTimeout(onDone, 2200)
-    return () => clearTimeout(t)
+    const timer = setTimeout(onDone, 2200)
+    return () => clearTimeout(timer)
   }, [onDone])
 
   return (
@@ -22,7 +25,6 @@ function Loader({ onDone }) {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[200] bg-espresso-800 flex flex-col items-center justify-center gap-6"
     >
-      {/* Logo */}
       <motion.div
         initial={{ scale: 0, rotate: -15 }}
         animate={{ scale: 1, rotate: 0 }}
@@ -42,7 +44,6 @@ function Loader({ onDone }) {
         <p className="font-tajawal text-cream-200/40 text-xs tracking-[0.3em] mt-1 uppercase">QATRAH COFFEE</p>
       </motion.div>
 
-      {/* Loading bar */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -63,7 +64,7 @@ function Loader({ onDone }) {
         transition={{ delay: 0.8 }}
         className="font-tajawal text-cream-200/25 text-xs"
       >
-        نُحضّر تجربتك...
+        {t.loader}
       </motion.p>
     </motion.div>
   )
@@ -71,6 +72,7 @@ function Loader({ onDone }) {
 
 /* ── Floating order button ── */
 function FloatingOrderBtn({ onClick }) {
+  const { t } = useLanguage()
   return (
     <motion.button
       initial={{ scale: 0, opacity: 0 }}
@@ -80,14 +82,15 @@ function FloatingOrderBtn({ onClick }) {
       whileTap={{ scale: 0.92 }}
       onClick={onClick}
       className="fixed bottom-6 start-6 z-40 flex items-center gap-2 bg-gold-400 text-espresso-800 px-5 py-3.5 rounded-full font-cairo font-black text-sm shadow-[0_8px_32px_rgba(241,228,154,0.4)] btn-gold"
-      aria-label="اطلب الآن"
     >
-      ☕ اطلب الآن
+      {t.floatOrderBtn}
     </motion.button>
   )
 }
 
-export default function App() {
+/* ── Inner app (needs language context) ── */
+function AppInner() {
+  const { t, language } = useLanguage()
   const [loading, setLoading] = useState(true)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState(null)
@@ -98,8 +101,11 @@ export default function App() {
   }
 
   return (
-    <div className="grain" dir="rtl">
-      {/* Loader */}
+    <div
+      className="grain"
+      dir={t.dir}
+      lang={language}
+    >
       <AnimatePresence>
         {loading && <Loader key="loader" onDone={() => setLoading(false)} />}
       </AnimatePresence>
@@ -113,6 +119,7 @@ export default function App() {
             <MenuSection onOrderOpen={openOrder} />
             <JourneySection />
             <ReservationSection />
+            <ContactSection />
             <DashboardPreview />
           </main>
 
@@ -128,5 +135,13 @@ export default function App() {
         </>
       )}
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppInner />
+    </LanguageProvider>
   )
 }
