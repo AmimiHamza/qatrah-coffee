@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base RTL Reset ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  direction: rtl;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Tajawal', sans-serif;
+  background-color: #2c1810;
+  color: #FEF4D5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #2c1810;
+}
+::-webkit-scrollbar-thumb {
+  background: #F1E49A;
+  border-radius: 3px;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: #F1E49A;
+  color: #2c1810;
+}
+
+/* ─── Smooth reveal utility ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Grain overlay ─── */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: -200%;
+  width: 400%;
+  height: 400%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+  animation: grain 8s steps(10) infinite;
+  z-index: 9999;
+}
+
+/* ─── Gold shimmer button ─── */
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+}
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  inset-inline-start: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: skewX(-20deg);
+  transition: inset-inline-start 0.6s ease;
+}
+.btn-gold:hover::after {
+  inset-inline-start: 150%;
+}
+
+/* ─── Card hover glow ─── */
+.card-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(241, 228, 154, 0.15),
+              0 20px 60px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+/* ─── Canvas wrapper ─── */
+.canvas-wrapper canvas {
+  touch-action: none;
+}
+
+/* ─── Drawer overlay ─── */
+.drawer-overlay {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ─── Number input RTL fix ─── */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+/* ─── Bento grid ─── */
+.bento-card {
+  background: linear-gradient(135deg, rgba(44,24,16,0.9) 0%, rgba(60,35,22,0.8) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(241, 228, 154, 0.12);
+}
+
+/* ─── Journey timeline ─── */
+.timeline-line {
+  background: linear-gradient(to bottom, transparent, #F1E49A, transparent);
+}
+
+/* ─── Loader ─── */
+@keyframes spin-gold {
+  to { transform: rotate(360deg); }
+}
+.loader-ring {
+  animation: spin-gold 1s linear infinite;
+}
+
+/* ─── RTL specific ─── */
+[dir="rtl"] .flip-rtl {
+  transform: scaleX(-1);
+}
+
+/* ─── Mobile nav ─── */
+@media (max-width: 768px) {
+  .mobile-nav-open {
+    overflow: hidden;
+  }
+}
+
+/* ─── Focus styles ─── */
+:focus-visible {
+  outline: 2px solid #F1E49A;
+  outline-offset: 2px;
+}
+
+/* ─── Gradient text ─── */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #F1E49A 0%, #d4bc20 50%, #F1E49A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-cream {
+  background: linear-gradient(135deg, #FEF4D5 0%, #F1E49A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
