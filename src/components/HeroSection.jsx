@@ -1,7 +1,7 @@
 import { useEffect, useRef, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
-import { ArrowDown, Star } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Star } from 'lucide-react'
 import CoffeeCup3D from './CoffeeCup3D'
 import { useLanguage } from '../context/LanguageContext'
 
@@ -31,16 +31,20 @@ function AnimatedWord() {
     return () => clearInterval(timer)
   }, [words])
 
-  return <span ref={ref} className="inline-block text-gradient-gold" style={{ minWidth: '7ch' }} />
+  return <span ref={ref} className="inline-block text-gradient-gold" style={{ minWidth: '9ch' }} />
 }
 
-export default function HeroSection({ onOrderOpen }) {
+export default function HeroSection() {
   const { t, language } = useLanguage()
   const h = t.hero
+  const isRTL = language === 'ar'
   const containerRef = useRef()
   const headlineRef = useRef()
   const subRef = useRef()
   const badgesRef = useRef()
+  const Arrow = isRTL ? ArrowLeft : ArrowRight
+
+  const scrollTo = (id) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -86,7 +90,7 @@ export default function HeroSection({ onOrderOpen }) {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-28 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
         {/* Text Side */}
-        <div className="order-1 text-start">
+        <div className={`order-1 ${isRTL ? 'text-start' : 'text-start'}`}>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -99,11 +103,11 @@ export default function HeroSection({ onOrderOpen }) {
 
           <div ref={headlineRef} className="overflow-hidden">
             <h1 className="font-cairo font-black text-cream-200 leading-[1.15] mb-2">
-              <span className="block text-4xl sm:text-5xl xl:text-6xl 2xl:text-7xl">{h.headline1}</span>
-              <span className="block text-4xl sm:text-5xl xl:text-6xl 2xl:text-7xl mt-1">
+              <span className="block text-4xl sm:text-5xl xl:text-6xl">{h.headline1}</span>
+              <span className="block text-4xl sm:text-5xl xl:text-6xl mt-1">
                 <AnimatedWord />
               </span>
-              <span className="block text-4xl sm:text-5xl xl:text-6xl 2xl:text-7xl text-gold-400 mt-1">{h.headline3}</span>
+              <span className="block text-4xl sm:text-5xl xl:text-6xl text-gold-400 mt-1">{h.headline3}</span>
             </h1>
           </div>
 
@@ -112,14 +116,9 @@ export default function HeroSection({ onOrderOpen }) {
           </p>
 
           <div ref={badgesRef} className="flex flex-wrap gap-3 mt-7">
-            {[
-              { icon: '☕', label: h.badges[0] },
-              { icon: '🌿', label: h.badges[1] },
-              { icon: '📍', label: h.badges[2] },
-              { icon: '⭐', label: h.badges[3] },
-            ].map(b => (
-              <span key={b.label} className="flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 font-tajawal text-cream-200/70 text-xs">
-                <span>{b.icon}</span>{b.label}
+            {h.badges.map(b => (
+              <span key={b} className="flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 font-tajawal text-cream-200/70 text-xs">
+                ☕ {b}
               </span>
             ))}
           </div>
@@ -127,18 +126,18 @@ export default function HeroSection({ onOrderOpen }) {
           <div className="flex flex-wrap gap-4 mt-9">
             <motion.button
               whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-              onClick={onOrderOpen}
-              className="btn-gold relative bg-gold-400 text-espresso-800 px-8 py-3.5 rounded-full font-cairo font-bold text-base shadow-[0_0_40px_rgba(241,228,154,0.3)] hover:shadow-[0_0_60px_rgba(241,228,154,0.45)] transition-shadow duration-300"
+              onClick={() => scrollTo('#contact')}
+              className="btn-gold relative bg-gold-400 text-espresso-800 px-8 py-3.5 rounded-full font-cairo font-bold text-base shadow-[0_0_40px_rgba(241,228,154,0.3)] hover:shadow-[0_0_60px_rgba(241,228,154,0.45)] transition-shadow duration-300 flex items-center gap-2"
             >
-              {h.orderNow}
+              {h.cta1} <Arrow className="w-4 h-4" />
             </motion.button>
-            <motion.a
-              href="#menu"
+            <motion.button
+              onClick={() => scrollTo('#dashboard')}
               whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
               className="flex items-center gap-2 border border-gold-400/30 text-cream-200 px-8 py-3.5 rounded-full font-cairo font-semibold text-base hover:bg-white/5 transition-colors duration-300"
             >
-              {h.explore}
-            </motion.a>
+              {h.cta2}
+            </motion.button>
           </div>
 
           <div className="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-white/8">
@@ -194,7 +193,9 @@ export default function HeroSection({ onOrderOpen }) {
             <div className="flex items-center gap-1 mb-1">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 text-gold-400 fill-gold-400" />)}
             </div>
-            <p className="font-tajawal text-cream-200/60 text-[10px] text-center">+800 {language === 'ar' ? 'تقييم' : 'reviews'}</p>
+            <p className="font-tajawal text-cream-200/60 text-[10px] text-center">
+              +40 {language === 'ar' ? 'مقهى يثق بنا' : 'cafés trust us'}
+            </p>
           </motion.div>
         </motion.div>
       </div>
@@ -207,7 +208,9 @@ export default function HeroSection({ onOrderOpen }) {
       >
         <span className="font-tajawal text-xs tracking-widest uppercase">{h.discover}</span>
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
-          <ArrowDown className="w-4 h-4" />
+          <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 10.586L3.707 6.293 2.293 7.707 8 13.414l5.707-5.707-1.414-1.414L8 10.586z"/>
+          </svg>
         </motion.div>
       </motion.div>
     </section>

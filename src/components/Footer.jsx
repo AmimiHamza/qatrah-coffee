@@ -1,21 +1,18 @@
 import { motion } from 'framer-motion'
-import { MapPin, Instagram, Twitter, Youtube } from 'lucide-react'
+import { Mail, MapPin, Share2, Camera } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
-
-const branches = [
-  { nameAr: 'النرجس', nameEn: 'Al Narjis', city: 'Riyadh', hours: '7AM – Midnight', phone: '011 123 4567' },
-  { nameAr: 'العليا', nameEn: 'Al Olaya', city: 'Riyadh', hours: '8AM – 11PM', phone: '011 987 6543' },
-  { nameAr: 'السليمانية', nameEn: 'Al Sulimaniyah', city: 'Riyadh', hours: '7AM – 1AM', phone: '011 456 7890' },
-]
 
 export default function Footer() {
   const { t, language } = useLanguage()
   const f = t.footer
+  const isRTL = language === 'ar'
+
+  const scrollTo = (href) => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
 
   const linkGroups = [
-    { title: f.quickLinks, items: f.links.quickLinks },
-    { title: f.about, items: f.links.about },
-    { title: f.business, items: f.links.business },
+    { title: f.quickLinks, items: f.links.quickLinks, hrefs: ['#features', '#process', '#dashboard', '#contact'] },
+    { title: f.services, items: f.links.services, hrefs: Array(5).fill('#contact') },
+    { title: f.company, items: f.links.company, hrefs: Array(4).fill('#') },
   ]
 
   return (
@@ -23,7 +20,7 @@ export default function Footer() {
       {/* Newsletter */}
       <div className="bg-gold-400/8 border-b border-gold-400/12 py-8">
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
+          <div className={isRTL ? 'text-end' : 'text-start'}>
             <h3 className="font-cairo font-bold text-cream-200 text-base">{f.newsletter}</h3>
             <p className="font-tajawal text-cream-200/40 text-sm mt-0.5">{f.newsletterSub}</p>
           </div>
@@ -49,24 +46,26 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-12 h-12 rounded-full bg-gold-400 flex items-center justify-center">
-                <span className="text-espresso-800 font-cairo font-black text-xl">ق</span>
+            <div className={`flex items-center gap-3 mb-5 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <div className="w-12 h-12 rounded-full bg-gold-400 flex items-center justify-center shrink-0">
+                <span className="text-espresso-800 font-cairo font-black text-xl">A</span>
               </div>
-              <div>
-                <span className="font-cairo font-black text-gold-400 text-2xl block">قَطرَة</span>
-                <span className="font-tajawal text-cream-200/30 text-[10px] tracking-widest uppercase">QATRAH COFFEE</span>
+              <div className={isRTL ? 'text-end' : 'text-start'}>
+                <span className="font-cairo font-black text-gold-400 text-2xl block">AMIMI</span>
+                <span className="font-tajawal text-cream-200/30 text-[10px] tracking-widest uppercase">عميمي · Digital</span>
               </div>
             </div>
-            <p className="font-tajawal text-cream-200/45 text-sm leading-relaxed mb-6 max-w-xs">{f.tagline}</p>
-            <div className="flex gap-3">
+            <p className={`font-tajawal text-cream-200/45 text-sm leading-relaxed mb-6 max-w-xs ${isRTL ? 'text-end' : 'text-start'}`}>
+              {f.tagline}
+            </p>
+            <div className={`flex gap-3 ${isRTL ? 'justify-end' : ''}`}>
               {[
-                { Icon: Instagram, label: 'Instagram' },
-                { Icon: Twitter, label: 'X / Twitter' },
-                { Icon: Youtube, label: 'YouTube' },
-              ].map(({ Icon, label }) => (
+                { Icon: Camera, label: 'Instagram', href: '#' },
+                { Icon: Share2, label: 'X / Twitter', href: '#' },
+                { Icon: Mail, label: 'Email', href: 'mailto:hamza.amimi.p@gmail.com' },
+              ].map(({ Icon, label, href }) => (
                 <motion.a
-                  key={label} href="#" aria-label={label}
+                  key={label} href={href} aria-label={label}
                   whileHover={{ scale: 1.1, backgroundColor: 'rgba(241,228,154,0.15)' }}
                   className="w-10 h-10 rounded-full bg-white/6 border border-white/10 flex items-center justify-center text-cream-200/60 hover:text-gold-400 transition-colors"
                 >
@@ -74,22 +73,26 @@ export default function Footer() {
                 </motion.a>
               ))}
             </div>
-            <div className="mt-6 flex items-center gap-2 bg-green-900/20 border border-green-700/20 rounded-xl px-4 py-2.5">
-              <span className="text-xl">🇸🇦</span>
+            <div className={`mt-6 flex items-center gap-2 bg-espresso-700/50 border border-white/8 rounded-xl px-4 py-2.5 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <span className="text-xl">☕</span>
               <span className="font-tajawal text-cream-200/40 text-xs">
-                {language === 'ar' ? 'فخور بالمنتج السعودي | رؤية ٢٠٣٠' : 'Proud Saudi Product | Vision 2030'}
+                {language === 'ar' ? 'متخصصون في مواقع المقاهي · السعودية والخليج' : 'Coffee shop website specialists · Saudi Arabia & GCC'}
               </span>
             </div>
           </div>
 
           {/* Link groups */}
           {linkGroups.map(group => (
-            <div key={group.title}>
+            <div key={group.title} className={isRTL ? 'text-end' : 'text-start'}>
               <h4 className="font-cairo font-bold text-cream-200 text-sm mb-4">{group.title}</h4>
               <ul className="space-y-2.5">
-                {group.items.map(item => (
+                {group.items.map((item, i) => (
                   <li key={item}>
-                    <a href="#" className="font-tajawal text-cream-200/40 text-sm hover:text-gold-400 transition-colors duration-200">
+                    <a
+                      href={group.hrefs[i]}
+                      onClick={e => { if (group.hrefs[i].startsWith('#')) { e.preventDefault(); scrollTo(group.hrefs[i]) } }}
+                      className="font-tajawal text-cream-200/40 text-sm hover:text-gold-400 transition-colors duration-200"
+                    >
                       {item}
                     </a>
                   </li>
@@ -99,37 +102,29 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Branches */}
+        {/* Contact row */}
         <div className="mt-14 pt-10 border-t border-white/8">
-          <h4 className="font-cairo font-bold text-cream-200 text-sm mb-5 flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-gold-400" />
-            {f.branches}
-          </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {branches.map(b => (
+          <div className={`grid grid-cols-1 sm:grid-cols-3 gap-4`}>
+            {[
+              { icon: '📧', label: language === 'ar' ? 'البريد' : 'Email', value: 'hamza.amimi.p@gmail.com' },
+              { icon: '💬', label: 'WhatsApp', value: '+212 643 626 334' },
+              { icon: <MapPin className="w-5 h-5" />, label: language === 'ar' ? 'النطاق' : 'Coverage', value: language === 'ar' ? 'السعودية والخليج' : 'Saudi Arabia & GCC' },
+            ].map((item, i) => (
               <motion.div
-                key={b.nameEn}
+                key={i}
                 whileHover={{ borderColor: 'rgba(241,228,154,0.25)', backgroundColor: 'rgba(255,255,255,0.04)' }}
-                className="bg-white/3 border border-white/8 rounded-2xl p-4 transition-colors duration-300"
+                className={`bg-white/3 border border-white/8 rounded-2xl p-4 transition-colors duration-300 ${isRTL ? 'text-end' : 'text-start'}`}
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-                  <p className="font-cairo font-bold text-cream-200 text-sm">
-                    {language === 'ar' ? `فرع ${b.nameAr}` : `${b.nameEn} Branch`}
-                  </p>
-                </div>
-                <p className="font-tajawal text-cream-200/40 text-xs">{b.city}</p>
-                <div className="flex items-center gap-3 mt-2">
-                  <span className="font-tajawal text-cream-200/35 text-xs">{b.hours}</span>
-                  <span className="font-tajawal text-gold-400/60 text-xs">{b.phone}</span>
-                </div>
+                <div className="text-2xl mb-2">{typeof item.icon === 'string' ? item.icon : item.icon}</div>
+                <p className="font-tajawal text-cream-200/40 text-xs">{item.label}</p>
+                <p className="font-cairo font-bold text-cream-200 text-sm mt-0.5">{item.value}</p>
               </motion.div>
             ))}
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="mt-10 pt-6 border-t border-white/6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className={`mt-10 pt-6 border-t border-white/6 flex flex-col sm:flex-row items-center justify-between gap-3 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
           <p className="font-tajawal text-cream-200/25 text-xs">{f.copyright}</p>
           <div className="flex items-center gap-4">
             <a href="#" className="font-tajawal text-cream-200/25 text-xs hover:text-cream-200/50 transition-colors">{f.privacy}</a>

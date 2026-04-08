@@ -152,7 +152,7 @@ export default function DashboardPreview() {
             </div>
             <div className="flex-1 flex justify-center">
               <div className="bg-white/8 rounded-full px-6 py-1 text-center">
-                <span className="font-tajawal text-cream-200/30 text-xs">dashboard.qatrah.sa</span>
+                <span className="font-tajawal text-cream-200/30 text-xs">dashboard.café.amimi.digital</span>
               </div>
             </div>
           </div>
@@ -330,15 +330,19 @@ export default function DashboardPreview() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="btn-gold bg-gold-400 text-espresso-800 px-8 py-3.5 rounded-full font-cairo font-black text-base shadow-[0_0_30px_rgba(241,228,154,0.25)]"
+              href={`https://wa.me/212643626334?text=${encodeURIComponent('مرحباً، أريد عرضاً توضيحياً للوحة تحكم مقهاي')}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              طلب عرض توضيحي
+              {t.dashboard.demoBtn}
             </motion.a>
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="border border-gold-400/30 text-cream-200 px-8 py-3.5 rounded-full font-cairo font-semibold text-base hover:bg-white/5 transition-colors"
             >
-              تحميل الكتيب التعريفي
+              {t.dashboard.brochureBtn}
             </motion.button>
           </div>
           {/* Trust logos */}
