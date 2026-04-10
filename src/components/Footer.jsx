@@ -76,7 +76,7 @@ export default function Footer() {
             <div className={`mt-6 flex items-center gap-2 bg-espresso-700/50 border border-white/8 rounded-xl px-4 py-2.5 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <span className="text-xl">☕</span>
               <span className="font-tajawal text-cream-200/40 text-xs">
-                {language === 'ar' ? 'متخصصون في مواقع المقاهي · السعودية والخليج' : 'Coffee shop website specialists · Saudi Arabia & GCC'}
+                {language === 'ar' ? 'متخصصون في مواقع المقاهي · حول العالم' : language === 'fr' ? 'Spécialistes des sites cafés · Monde entier' : 'Coffee shop website specialists · Worldwide'}
               </span>
             </div>
           </div>
@@ -108,7 +108,7 @@ export default function Footer() {
             {[
               { icon: '📧', label: language === 'ar' ? 'البريد' : 'Email', value: 'hamza.amimi.p@gmail.com' },
               { icon: '💬', label: 'WhatsApp', value: '+212 643 626 334' },
-              { icon: <MapPin className="w-5 h-5" />, label: language === 'ar' ? 'النطاق' : 'Coverage', value: language === 'ar' ? 'السعودية والخليج' : 'Saudi Arabia & GCC' },
+              { icon: <MapPin className="w-5 h-5" />, label: language === 'ar' ? 'النطاق' : language === 'fr' ? 'Zone' : 'Coverage', value: language === 'ar' ? 'حول العالم' : language === 'fr' ? 'Monde entier' : 'Worldwide' },
             ].map((item, i) => (
               <motion.div
                 key={i}
