@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import Navigation from './components/Navigation'
 import HeroSection from './components/HeroSection'
+import WaaSSection from './components/WaaSSection'
 import FeaturesSection from './components/FeaturesSection'
 import ProcessSection from './components/ProcessSection'
 import DashboardPreview from './components/DashboardPreview'
@@ -77,6 +78,7 @@ function AppInner() {
           <Navigation />
           <main>
             <HeroSection />
+            <WaaSSection />
             <FeaturesSection />
             <ProcessSection />
             <DashboardPreview />

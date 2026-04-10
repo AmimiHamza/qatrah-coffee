@@ -126,7 +126,7 @@ export default function HeroSection() {
           <div className="flex flex-wrap gap-4 mt-9">
             <motion.button
               whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-              onClick={() => scrollTo('#contact')}
+              onClick={() => scrollTo('#waas')}
               className="btn-gold relative bg-gold-400 text-espresso-800 px-8 py-3.5 rounded-full font-cairo font-bold text-base shadow-[0_0_40px_rgba(241,228,154,0.3)] hover:shadow-[0_0_60px_rgba(241,228,154,0.45)] transition-shadow duration-300 flex items-center gap-2"
             >
               {h.cta1} <Arrow className="w-4 h-4" />

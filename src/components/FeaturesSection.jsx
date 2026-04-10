@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, Eye, ArrowLeft, ArrowRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
@@ -71,6 +72,7 @@ export default function FeaturesSection() {
   const f = t.features
   const isRTL = language === 'ar'
   const Arrow = isRTL ? ArrowLeft : ArrowRight
+  const [pricingTooltip, setPricingTooltip] = useState(false)
 
   const [selected, setSelected] = useState(
     new Set(features.filter(f => f.included).map(f => f.id))
@@ -225,6 +227,42 @@ export default function FeaturesSection() {
                     )
                   })}
                 </AnimatePresence>
+              </div>
+
+              {/* Pricing mini-block */}
+              <div className="px-4 py-3 border-t border-white/8 space-y-2">
+                <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <span className="font-tajawal text-cream-200/30 text-[10px] tracking-wider uppercase">
+                    {language === 'ar' ? 'رسوم التأسيس' : language === 'fr' ? 'Frais de création' : 'Setup Fee'}
+                  </span>
+                  <span className="font-cairo font-bold text-gold-400 text-base">
+                    {language === 'ar' ? '٠' : '0'}
+                  </span>
+                </div>
+                <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <div className={`flex items-center gap-1.5 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <span className="font-tajawal text-cream-200/30 text-[10px] tracking-wider uppercase">
+                      {language === 'ar' ? 'الاشتراك الشهري' : language === 'fr' ? 'Abonnement mensuel' : 'Monthly Investment'}
+                    </span>
+                    <div className="relative">
+                      <button
+                        onMouseEnter={() => setPricingTooltip(true)}
+                        onMouseLeave={() => setPricingTooltip(false)}
+                        className="w-3.5 h-3.5 rounded-full border border-white/20 bg-white/5 flex items-center justify-center font-tajawal text-cream-200/30 text-[8px] cursor-pointer"
+                      >
+                        i
+                      </button>
+                      {pricingTooltip && (
+                        <div className={`absolute bottom-full mb-1.5 left-1/2 -translate-x-1/2 w-44 bg-espresso-900 border border-white/10 rounded-xl p-2.5 font-tajawal text-cream-200/50 text-[10px] leading-relaxed z-20 shadow-2xl ${isRTL ? 'text-right' : 'text-left'}`}>
+                          {language === 'ar' ? 'يشمل استضافة Vercel، شهادة SSL، والدعم التقني' : language === 'fr' ? "Inclut Vercel, SSL et support continu" : 'Includes Vercel hosting, SSL, and support'}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <span className="font-cairo font-bold text-cream-200 text-sm">
+                    {language === 'ar' ? '٢٩٩ ر.س/شهر' : language === 'fr' ? '79 £/mois' : '$79/mo'}
+                  </span>
+                </div>
               </div>
 
               {/* CTAs */}
