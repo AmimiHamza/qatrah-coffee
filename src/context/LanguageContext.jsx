@@ -1,4 +1,6 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
+
+const STORAGE_KEY = 'amimi-locale'
 
 const LanguageContext = createContext()
 
@@ -183,7 +185,7 @@ export const translations = {
       tag: 'Build Your Package',
       title: 'Choose What Your',
       titleHighlight: 'Café Needs',
-      sub: 'Select the features you want — we\'ll build your café site to fit exactly. Gold items are always included.',
+      sub: "Select the features you want — we'll build your café site to fit exactly. Gold items are always included.",
       included: 'Included',
       all: 'All',
       your_package: 'Your Package',
@@ -199,7 +201,7 @@ export const translations = {
       sub: 'A proven, transparent process — 4 stages to turn your vision into a café website that converts visitors into loyal customers.',
       badge: 'Proud partners with third-wave cafés',
       badgeSub: 'Specializing in Saudi & GCC coffee market',
-      quote: 'Every cup of coffee tells a story — we\'re here to make your café\'s story heard digitally',
+      quote: "Every cup of coffee tells a story — we're here to make your café's story heard digitally",
       quoteBy: '— Hamza Amimi, Developer & Designer',
       steps: [
         {
@@ -207,7 +209,7 @@ export const translations = {
           icon: '🔍',
           location: 'Discovery & Planning',
           title: 'We Understand Your Café First',
-          desc: 'In our first session, we listen to your café\'s story — your brand identity, target audience, and competitors. We leave with a clear roadmap for your site.',
+          desc: "In our first session, we listen to your café's story — your brand identity, target audience, and competitors. We leave with a clear roadmap for your site.",
           stat: { num: '30 min', label: 'Free discovery session' },
           img: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80',
         },
@@ -255,7 +257,7 @@ export const translations = {
       tag: 'Get In Touch',
       title: 'Have a Café?',
       titleHighlight: "We're Listening",
-      sub: 'Whether you need a simple landing page or a full platform — reach out and we\'ll respond within 24 hours.',
+      sub: "Whether you need a simple landing page or a full platform — reach out and we'll respond within 24 hours.",
       namePh: 'Your Full Name',
       emailPh: 'Your Email Address',
       servicePh: 'Service Type',
@@ -298,15 +300,196 @@ export const translations = {
     },
     loader: 'Preparing your experience...',
   },
+
+  fr: {
+    dir: 'ltr',
+    lang: 'fr',
+    nav: {
+      features: 'Ce que vous obtenez',
+      process: 'Notre méthode',
+      dashboard: 'Tableau de bord',
+      contact: 'Contact',
+      cta: 'Commencer',
+    },
+    hero: {
+      badge: 'Amimi Digital · Sites pour cafés',
+      headline1: 'Votre café mérite',
+      headline3: 'aussi beau que votre café',
+      words: ['un site web', 'une identité digitale', 'une expérience unique', 'une plateforme solide'],
+      sub: 'Nous créons des sites web pour cafés bilingues à fort taux de conversion — avec tableaux de bord intelligents, commande en ligne et réservations. En jours, pas en mois.',
+      cta1: 'Créer mon site café',
+      cta2: 'Voir le tableau de bord',
+      badges: ['100% Sur mesure', 'Bilingue FR/AR', 'Mobile d\'abord', 'Livré en 7 jours'],
+      stats: [
+        { num: '+40', label: 'Cafés servis' },
+        { num: '3', label: 'Pays du Golfe' },
+        { num: '98 %', label: 'Satisfaction client' },
+      ],
+      discover: 'Découvrir',
+      floatLabel: 'Votre site café est prêt',
+      floatSub: 'En seulement 7 jours ☕',
+    },
+    features: {
+      tag: 'Composez votre offre',
+      title: 'Choisissez ce dont',
+      titleHighlight: 'votre café a besoin',
+      sub: 'Sélectionnez les fonctionnalités souhaitées — nous construisons votre site exactement comme vous le voulez. Les éléments dorés sont toujours inclus.',
+      included: 'Inclus',
+      all: 'Tout',
+      your_package: 'Votre offre',
+      features_selected: 'fonctionnalités sélectionnées',
+      preview: 'Aperçu de mon offre',
+      send_wa: 'Envoyer via WhatsApp',
+      contact_us: 'Ou nous contacter',
+    },
+    process: {
+      tag: 'Notre méthode',
+      title: "De l'idée au",
+      titleHighlight: 'lancement',
+      sub: 'Un processus éprouvé et transparent — 4 étapes pour transformer votre vision en un site café qui convertit les visiteurs en clients fidèles.',
+      badge: 'Partenaires fiers des cafés de troisième vague',
+      badgeSub: 'Spécialistes du marché saoudien et du Golfe',
+      quote: 'Chaque tasse de café raconte une histoire — nous sommes là pour que celle de votre café soit entendue digitalement',
+      quoteBy: '— Hamza Amimi, Développeur & Designer',
+      steps: [
+        {
+          step: '01',
+          icon: '🔍',
+          location: 'Découverte & Planification',
+          title: 'Nous comprenons votre café en premier',
+          desc: "Lors de notre première session, nous écoutons l'histoire de votre café — votre identité de marque, votre audience cible et vos concurrents. Nous en ressortons avec une feuille de route claire pour votre site.",
+          stat: { num: '30 min', label: 'Session découverte gratuite' },
+          img: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80',
+        },
+        {
+          step: '02',
+          icon: '🎨',
+          location: 'Design & Identité',
+          title: 'Nous concevons une expérience inoubliable',
+          desc: 'Nous créons un design entièrement sur mesure pour votre café — de la typographie aux palettes de couleurs en passant par le parcours utilisateur. Pas de templates, juste un design unique qui reflète votre âme.',
+          stat: { num: '3', label: 'Concepts design au choix' },
+          img: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80',
+        },
+        {
+          step: '03',
+          icon: '⚡',
+          location: 'Développement & Ingénierie',
+          title: 'Nous développons avec les dernières technologies',
+          desc: 'Votre site est construit avec Next.js et Tailwind CSS — les frameworks modernes les plus rapides. Entièrement bilingue (AR/FR), optimisé Google, et rapide sur tous les appareils.',
+          stat: { num: '100', label: 'Score PageSpeed' },
+          img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80',
+        },
+        {
+          step: '04',
+          icon: '🚀',
+          location: 'Lancement & Support',
+          title: 'Nous lançons et restons à vos côtés',
+          desc: 'Après la livraison, nous déployons sur Vercel avec SSL gratuit. Vous bénéficiez d\'un mois complet de support technique pour garantir un fonctionnement parfait dès le premier jour.',
+          stat: { num: '7 jours', label: "De l'accord au lancement" },
+          img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+        },
+      ],
+    },
+    dashboard: {
+      tag: 'Gérant de café · Système de gestion intelligent',
+      title: 'Gérez votre café intelligemment',
+      titleHighlight: 'de partout',
+      sub: 'Un tableau de bord tout-en-un conçu pour les cafés de troisième vague — suivez vos ventes, commandes et clients en temps réel.',
+      interested: 'Intéressé par un tableau de bord pour votre café ?',
+      interestedSub: 'Obtenez une démo gratuite de 30 minutes — sans engagement',
+      demoBtn: 'Demander une démo',
+      brochureBtn: 'Nous contacter maintenant',
+      supports: 'Compatible avec :',
+    },
+    contact: {
+      tag: 'Contactez-nous',
+      title: 'Vous avez un café ?',
+      titleHighlight: 'Nous vous écoutons',
+      sub: "Que vous ayez besoin d'une simple page d'accueil ou d'une plateforme complète — contactez-nous et nous répondrons sous 24 heures.",
+      namePh: 'Votre nom complet',
+      emailPh: 'Votre adresse e-mail',
+      servicePh: 'Type de service',
+      messagePh: 'Parlez-nous de votre café...',
+      send: 'Envoyer le message',
+      sending: 'Envoi en cours...',
+      successTitle: 'Message envoyé ! 🎉',
+      successSub: 'Merci de nous avoir contactés. Nous vous répondrons bientôt.',
+      services: [
+        { value: 'website', label: 'Site café complet' },
+        { value: 'menu', label: 'Menu digital interactif' },
+        { value: 'dashboard', label: 'Tableau de bord admin' },
+        { value: 'ordering', label: 'Système de commande en ligne' },
+        { value: 'branding', label: 'Identité visuelle' },
+        { value: 'other', label: 'Autre' },
+      ],
+      info: [
+        { icon: '📧', label: 'E-mail', value: 'hamza.amimi.p@gmail.com' },
+        { icon: '⚡', label: 'Délai de réponse', value: 'Sous 24 heures' },
+        { icon: '🌍', label: 'Zones servies', value: 'Arabie Saoudite & Golfe' },
+      ],
+    },
+    footer: {
+      newsletter: 'Restez informé de nos derniers projets',
+      newsletterSub: 'Conseils et projets exclusifs pour les cafés du Golfe',
+      subscribe: "S'abonner",
+      emailPh: 'Votre adresse e-mail',
+      copyright: '© 2025 Amimi Digital · Tous droits réservés',
+      privacy: 'Politique de confidentialité',
+      terms: "Conditions d'utilisation",
+      tagline: 'Nous créons des sites cafés exceptionnels en Arabie Saoudite & dans le Golfe — beaux, rapides et conçus pour convertir.',
+      quickLinks: 'Liens rapides',
+      services: 'Services',
+      company: 'Entreprise',
+      links: {
+        quickLinks: ['Ce que vous obtenez', 'Notre méthode', 'Tableau de bord', 'Nous contacter'],
+        services: ['Site café complet', 'Menu digital', 'Tableau de bord', 'Commande en ligne', 'Identité visuelle'],
+        company: ['Notre histoire', 'Nos réalisations', 'Politique de confidentialité', "Conditions d'utilisation"],
+      },
+    },
+    loader: 'Préparation de votre expérience...',
+  },
 }
 
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState('ar')
+  const [language, setLanguageState] = useState('ar')
+  const [pickerOpen, setPickerOpen] = useState(false)
+
+  // On mount: check localStorage — show picker only on first visit
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved && ['en', 'ar', 'fr'].includes(saved)) {
+      applyLanguage(saved)
+    } else {
+      setPickerOpen(true)
+    }
+  }, [])
+
+  const applyLanguage = (lang) => {
+    setLanguageState(lang)
+    const dir = lang === 'ar' ? 'rtl' : 'ltr'
+    document.documentElement.setAttribute('dir', dir)
+    document.documentElement.setAttribute('lang', lang)
+  }
+
+  const setLanguage = (lang) => {
+    applyLanguage(lang)
+    localStorage.setItem(STORAGE_KEY, lang)
+  }
+
+  const pickLanguage = (lang) => {
+    setLanguage(lang)
+    setPickerOpen(false)
+  }
+
+  const toggle = () => {
+    const next = language === 'ar' ? 'en' : language === 'en' ? 'ar' : 'en'
+    setLanguage(next)
+  }
+
   const t = translations[language]
-  const toggle = () => setLanguage(l => l === 'ar' ? 'en' : 'ar')
 
   return (
-    <LanguageContext.Provider value={{ language, t, toggle }}>
+    <LanguageContext.Provider value={{ language, t, toggle, setLanguage, pickerOpen, pickLanguage }}>
       {children}
     </LanguageContext.Provider>
   )

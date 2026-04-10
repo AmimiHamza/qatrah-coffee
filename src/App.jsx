@@ -9,6 +9,7 @@ import DashboardPreview from './components/DashboardPreview'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import LanguagePicker from './components/LanguagePicker'
 
 /* ── Loader ── */
 function Loader({ onDone }) {
@@ -66,6 +67,7 @@ function AppInner() {
 
   return (
     <div className="grain" dir={t.dir} lang={t.lang}>
+      <LanguagePicker />
       <AnimatePresence>
         {loading && <Loader key="loader" onDone={() => setLoading(false)} />}
       </AnimatePresence>
