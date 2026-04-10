@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 
 const options = [
-  { locale: 'ar', label: 'Arabic',   native: 'العربية',  flag: '🇸🇦', dir: 'rtl' },
   { locale: 'en', label: 'English',  native: 'English',  flag: '🇬🇧', dir: 'ltr' },
   { locale: 'fr', label: 'Français', native: 'Français', flag: '🇫🇷', dir: 'ltr' },
+  { locale: 'ar', label: 'Arabic',   native: 'العربية',  flag: '🇸🇦', dir: 'rtl' },
 ]
 
 export default function LanguagePicker() {
