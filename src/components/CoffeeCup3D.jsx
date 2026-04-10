@@ -156,12 +156,12 @@ function CoffeeCup({ mousePos }) {
       </mesh>
 
       {/* Handle */}
-      <mesh position={[-0.65, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+      <mesh position={[-0.55, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
         <torusGeometry args={[0.35, 0.065, 16, 48, Math.PI]} />
         <meshStandardMaterial color="#FEF4D5" roughness={0.12} metalness={0.04} />
       </mesh>
       {/* Handle inner rim gold */}
-      <mesh position={[-0.65, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+      <mesh position={[-0.55, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
         <torusGeometry args={[0.35, 0.02, 8, 48, Math.PI]} />
         <meshStandardMaterial color="#F1E49A" roughness={0.2} metalness={0.6} />
       </mesh>
