@@ -30,12 +30,6 @@ const features = [
     included: false,
   },
   {
-    id: 'ordering', icon: '🛍',
-    ar: { title: 'طلب أونلاين ودفع إلكتروني', desc: 'تخصيص الطلب (الحجم، الحليب، السكر) مع مدى وآبل باي.' },
-    en: { title: 'Online Ordering & Payment', desc: 'Order customization (size, milk, sugar) with Mada and Apple Pay.' },
-    included: false,
-  },
-  {
     id: 'reservation', icon: '📅',
     ar: { title: 'نظام حجوزات أونلاين', desc: 'حجز الطاولات باختيار التاريخ والوقت والمنطقة مع تأكيد فوري.' },
     en: { title: 'Online Reservation System', desc: 'Table booking with date, time, and zone selection with instant confirmation.' },
