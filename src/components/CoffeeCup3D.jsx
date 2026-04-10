@@ -101,7 +101,7 @@ function CoffeeCup({ mousePos }) {
   return (
     <group ref={groupRef}>
       {/* Saucer */}
-      <mesh position={[0, -0.85, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh position={[0, -0.85, 0]}>
         <cylinderGeometry args={[1.05, 0.9, 0.08, 64]} />
         <meshStandardMaterial color="#FEF4D5" roughness={0.1} metalness={0.05} />
       </mesh>
@@ -137,13 +137,13 @@ function CoffeeCup({ mousePos }) {
         <meshStandardMaterial color="#FEF4D5" roughness={0.1} metalness={0.02} />
       </mesh>
       {/* Cup rim */}
-      <mesh position={[0, 0.77, 0]}>
+      <mesh position={[0, 0.77, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.62, 0.04, 16, 64]} />
         <meshStandardMaterial color="#F1E49A" roughness={0.15} metalness={0.7} />
       </mesh>
 
       {/* Gold band decoration */}
-      <mesh position={[0, -0.2, 0]}>
+      <mesh position={[0, -0.2, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.55, 0.025, 8, 64]} />
         <meshStandardMaterial color="#F1E49A" roughness={0.1} metalness={0.9} />
       </mesh>
@@ -223,7 +223,7 @@ export default function CoffeeCup3D() {
   return (
     <div ref={containerRef} className="w-full h-full canvas-wrapper">
       <Canvas
-        camera={{ position: [0, 0.5, 3.5], fov: 40 }}
+        camera={{ position: [0, 1.2, 3.8], fov: 42 }}
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
         shadows
