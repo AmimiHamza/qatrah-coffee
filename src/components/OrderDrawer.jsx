@@ -20,14 +20,14 @@ const sweetnessLevels = [
 
 const orderModes = [
   { id: 'dine-in', label: 'في المكان', icon: UtensilsCrossed, desc: 'استمتع بأجواء المقهى' },
-  { id: 'pickup', label: 'استلام', icon: Package, desc: 'جاهز خلال ١٠ دقائق' },
+  { id: 'pickup', label: 'استلام', icon: Package, desc: 'جاهز خلال 10 دقائق' },
   { id: 'car', label: 'استلام بالسيارة', icon: Car, desc: 'ابقَ في سيارتك' },
 ]
 
 const sizeOptions = [
-  { id: 'small', label: 'صغير', oz: '٨', price: 0 },
-  { id: 'medium', label: 'وسط', oz: '١٢', price: 5 },
-  { id: 'large', label: 'كبير', oz: '١٦', price: 8 },
+  { id: 'small', label: 'صغير', oz: '8', price: 0 },
+  { id: 'medium', label: 'وسط', oz: '12', price: 5 },
+  { id: 'large', label: 'كبير', oz: '16', price: 8 },
 ]
 
 export default function OrderDrawer({ isOpen, onClose, preSelectedItem }) {
@@ -59,11 +59,11 @@ export default function OrderDrawer({ isOpen, onClose, preSelectedItem }) {
   const item = preSelectedItem || {
     nameAr: 'يرغاشيف V60',
     nameEn: 'Yirgacheffe V60',
-    price: '٢٢',
+    price: '22',
     img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&q=80',
   }
 
-  const basePrice = parseInt(item.price.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))) || 22
+  const basePrice = parseInt(item.price.replace(/[0-9]/g, d => '0123456789'.indexOf(d))) || 22
   const milkExtra = milkOptions.find(m => m.id === milk)?.extra || 0
   const sizeExtra = sizeOptions.find(s => s.id === size)?.price || 0
   const total = (basePrice + milkExtra + sizeExtra) * qty
@@ -381,7 +381,7 @@ export default function OrderDrawer({ isOpen, onClose, preSelectedItem }) {
                           type="tel"
                           value={phone}
                           onChange={e => setPhone(e.target.value)}
-                          placeholder="٥٠٠ ١٢٣ ٤٥٦"
+                          placeholder="500 123 456"
                           className="flex-1 bg-white/8 border border-white/10 rounded-xl px-3 py-2.5 font-tajawal text-cream-200 text-sm placeholder:text-cream-200/30 focus:border-[#25D366]/50 focus:outline-none transition-colors"
                           dir="ltr"
                         />
@@ -432,7 +432,7 @@ export default function OrderDrawer({ isOpen, onClose, preSelectedItem }) {
                       <p className="font-cairo font-bold text-gold-400 text-xl">{total} ريال</p>
                       <p className="font-tajawal text-cream-200/40 text-xs mt-1">
                         {orderModes.find(o => o.id === mode)?.label} •{' '}
-                        {mode === 'dine-in' ? '~١٠ دقائق' : '~١٥ دقيقة'}
+                        {mode === 'dine-in' ? '~10 دقائق' : '~15 دقيقة'}
                       </p>
                     </div>
                     <motion.a

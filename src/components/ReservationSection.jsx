@@ -8,7 +8,7 @@ const zones = [
     icon: '🌅',
     label: 'مقعد النافذة',
     desc: 'إطلالة بانورامية وإضاءة طبيعية',
-    capacity: '١–٢',
+    capacity: '1–2',
     mood: 'هادئ ورومانسي',
     available: 3,
   },
@@ -17,7 +17,7 @@ const zones = [
     icon: '💻',
     label: 'منطقة العمل الهادئة',
     desc: 'واي فاي فائق السرعة، طاولات واسعة',
-    capacity: '١–٣',
+    capacity: '1–3',
     mood: 'تركيز وإنتاجية',
     available: 5,
   },
@@ -26,7 +26,7 @@ const zones = [
     icon: '🎭',
     label: 'الصالة الاجتماعية',
     desc: 'أجواء حيوية مع موسيقى هادئة',
-    capacity: '٢–٨',
+    capacity: '2–8',
     mood: 'اجتماعي ومرح',
     available: 2,
   },
@@ -35,19 +35,19 @@ const zones = [
     icon: '🏛️',
     label: 'الغرفة الخاصة',
     desc: 'مثالية للاجتماعات والمناسبات',
-    capacity: '٤–١٢',
+    capacity: '4–12',
     mood: 'خاص وحصري',
     available: 1,
   },
 ]
 
 const timeSlots = [
-  '٧:٠٠ ص', '٧:٣٠ ص', '٨:٠٠ ص', '٨:٣٠ ص',
-  '٩:٠٠ ص', '٩:٣٠ ص', '١٠:٠٠ ص', '١٠:٣٠ ص',
-  '١١:٠٠ ص', '١١:٣٠ ص', '١٢:٠٠ م', '١٢:٣٠ م',
-  '١:٠٠ م', '١:٣٠ م', '٢:٠٠ م', '٣:٠٠ م',
-  '٤:٠٠ م', '٥:٠٠ م', '٦:٠٠ م', '٧:٠٠ م',
-  '٨:٠٠ م', '٩:٠٠ م', '١٠:٠٠ م', '١١:٠٠ م',
+  '7:00 ص', '7:30 ص', '8:00 ص', '8:30 ص',
+  '9:00 ص', '9:30 ص', '10:00 ص', '10:30 ص',
+  '11:00 ص', '11:30 ص', '12:00 م', '12:30 م',
+  '1:00 م', '1:30 م', '2:00 م', '3:00 م',
+  '4:00 م', '5:00 م', '6:00 م', '7:00 م',
+  '8:00 م', '9:00 م', '10:00 م', '11:00 م',
 ]
 
 // Today + 14 days
@@ -115,7 +115,7 @@ export default function ReservationSection() {
           <div className="inline-flex items-start gap-2 bg-gold-400/8 border border-gold-400/20 rounded-xl px-4 py-3 mt-2">
             <Info className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
             <p className="font-tajawal text-cream-200/55 text-xs leading-relaxed">
-              <span className="text-gold-400 font-bold">سياسة الحجز:</span> إلغاء مجاني قبل الموعد بـ٢ ساعة.
+              <span className="text-gold-400 font-bold">سياسة الحجز:</span> إلغاء مجاني قبل الموعد بـ2 ساعة.
               بعد التأكيد، يُرجى الحضور في الموعد المحدد للحفاظ على تجربة الجميع ✨
             </p>
           </div>
@@ -182,8 +182,8 @@ export default function ReservationSection() {
                           dir="ltr"
                         />
                         <div className="flex justify-between font-tajawal text-cream-200/25 text-xs mt-1">
-                          <span>١</span>
-                          <span>١٢</span>
+                          <span>1</span>
+                          <span>12</span>
                         </div>
                       </div>
 

@@ -228,7 +228,7 @@ export default function FeaturesSection() {
                   {language === 'ar' ? 'رسوم التأسيس' : language === 'fr' ? 'Frais de création' : 'Setup Fee'}
                 </span>
                 <span className="font-cairo font-bold text-gold-400 text-xl">
-                  {language === 'ar' ? '٠' : '0'}
+                  0
                 </span>
               </div>
 

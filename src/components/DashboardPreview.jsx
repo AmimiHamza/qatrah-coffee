@@ -8,10 +8,10 @@ import { useLanguage } from '../context/LanguageContext'
 gsap.registerPlugin(ScrollTrigger)
 
 const stats = [
-  { icon: TrendingUp, label: 'زيادة الإيرادات', value: '+٤٢٪', desc: 'مقارنة بالنظام التقليدي', color: 'text-green-400' },
-  { icon: Package, label: 'تقليص هدر المخزون', value: '-٣١٪', desc: 'من خلال التنبؤ الذكي', color: 'text-blue-400' },
-  { icon: Users, label: 'معدل عودة العملاء', value: '٧٨٪', desc: 'أعلى بكثير من المتوسط', color: 'text-gold-400' },
-  { icon: Clock, label: 'وقت الانتظار', value: '-٤٥٪', desc: 'بفضل نظام الطلبات الذكي', color: 'text-purple-400' },
+  { icon: TrendingUp, label: 'زيادة الإيرادات', value: '+42٪', desc: 'مقارنة بالنظام التقليدي', color: 'text-green-400' },
+  { icon: Package, label: 'تقليص هدر المخزون', value: '-31٪', desc: 'من خلال التنبؤ الذكي', color: 'text-blue-400' },
+  { icon: Users, label: 'معدل عودة العملاء', value: '78٪', desc: 'أعلى بكثير من المتوسط', color: 'text-gold-400' },
+  { icon: Clock, label: 'وقت الانتظار', value: '-45٪', desc: 'بفضل نظام الطلبات الذكي', color: 'text-purple-400' },
 ]
 
 const features = [
@@ -29,10 +29,10 @@ function AnimatedCounter({ target, duration = 2 }) {
   // Extract numeric value
   const isPercent = target.includes('٪')
   const isNeg = target.includes('-')
-  const numStr = target.replace(/[^\u0660-\u0669٠-٩]/g, '')
+  const numStr = target.replace(/[^\u0660-\u06690-9]/g, '')
   const numAr = numStr
   const numEn = parseInt(
-    numAr.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+    numAr.replace(/[0-9]/g, d => '0123456789'.indexOf(d))
   )
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function AnimatedCounter({ target, duration = 2 }) {
           start = Math.min(start + step, numEn)
           const arNum = Math.floor(start)
             .toString()
-            .replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d])
+            .replace(/[0-9]/g, d => '0123456789'[d])
           setCount(arNum)
           if (start < numEn) requestAnimationFrame(frame)
         }
@@ -61,7 +61,7 @@ function AnimatedCounter({ target, duration = 2 }) {
   return (
     <span ref={ref} className="tabular-nums">
       {isNeg ? '-' : '+'}
-      {count || '٠'}
+      {count || '0'}
       {isPercent ? '٪' : ''}
     </span>
   )
@@ -167,12 +167,12 @@ export default function DashboardPreview() {
                     <div>
                       <p className="font-tajawal text-cream-200/40 text-xs">الإيراد الشهري</p>
                       <p className="font-cairo font-black text-cream-200 text-2xl mt-0.5">
-                        ٤٨,٣٠٠ <span className="text-sm text-cream-200/40 font-tajawal font-normal">ريال</span>
+                        48,300 <span className="text-sm text-cream-200/40 font-tajawal font-normal">ريال</span>
                       </p>
                     </div>
                     <div className="flex items-center gap-1 bg-green-500/15 border border-green-500/25 px-3 py-1.5 rounded-full">
                       <TrendingUp className="w-3 h-3 text-green-400" />
-                      <span className="font-tajawal text-green-400 text-xs font-bold">+٢٣٪</span>
+                      <span className="font-tajawal text-green-400 text-xs font-bold">+23٪</span>
                     </div>
                   </div>
                   <MiniChart />
@@ -186,10 +186,10 @@ export default function DashboardPreview() {
                 {/* Mini stats row */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {[
-                    { label: 'طلبات اليوم', value: '١٣٤', icon: '📦', trend: '+١٢' },
-                    { label: 'متوسط الطلب', value: '٣٢ ر', icon: '💰', trend: '+٥' },
-                    { label: 'الحجوزات', value: '٢٧', icon: '📅', trend: '+٨' },
-                    { label: 'تقييم اليوم', value: '٤.٩', icon: '⭐', trend: '+٠.١' },
+                    { label: 'طلبات اليوم', value: '134', icon: '📦', trend: '+12' },
+                    { label: 'متوسط الطلب', value: '32 ر', icon: '💰', trend: '+5' },
+                    { label: 'الحجوزات', value: '27', icon: '📅', trend: '+8' },
+                    { label: 'تقييم اليوم', value: '4.9', icon: '⭐', trend: '+0.1' },
                   ].map(s => (
                     <div key={s.label} className="bg-white/4 border border-white/8 rounded-xl p-3">
                       <div className="flex items-center justify-between mb-2">
@@ -209,7 +209,7 @@ export default function DashboardPreview() {
                 <div className="bg-white/4 border border-white/8 rounded-2xl p-5">
                   <div className="flex items-center justify-between mb-4">
                     <p className="font-cairo font-bold text-cream-200 text-sm">المخزون</p>
-                    <span className="font-tajawal text-green-400 text-xs bg-green-500/10 px-2 py-0.5 rounded-full">٣ تنبيه</span>
+                    <span className="font-tajawal text-green-400 text-xs bg-green-500/10 px-2 py-0.5 rounded-full">3 تنبيه</span>
                   </div>
                   <div className="space-y-3">
                     {[
@@ -242,10 +242,10 @@ export default function DashboardPreview() {
                   <p className="font-cairo font-bold text-cream-200 text-sm mb-4">جدول الشيفت</p>
                   <div className="space-y-2">
                     {[
-                      { name: 'أحمد', role: 'بارستا', time: '٧ص–١٢م', status: 'active' },
-                      { name: 'سلطان', role: 'كاشير', time: '٨ص–١م', status: 'active' },
-                      { name: 'نورا', role: 'بارستا', time: '١٢م–٦م', status: 'upcoming' },
-                      { name: 'ريم', role: 'مدير', time: '٧ص–٤م', status: 'active' },
+                      { name: 'أحمد', role: 'بارستا', time: '7ص–12م', status: 'active' },
+                      { name: 'سلطان', role: 'كاشير', time: '8ص–1م', status: 'active' },
+                      { name: 'نورا', role: 'بارستا', time: '12م–6م', status: 'upcoming' },
+                      { name: 'ريم', role: 'مدير', time: '7ص–4م', status: 'active' },
                     ].map(staff => (
                       <div key={staff.name} className="flex items-center gap-2.5">
                         <div className={`w-2 h-2 rounded-full shrink-0 ${staff.status === 'active' ? 'bg-green-400' : 'bg-cream-200/20'}`} />
